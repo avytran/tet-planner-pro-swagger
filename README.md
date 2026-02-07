@@ -21,8 +21,7 @@ The Swagger file (`tet-planner-pro-swagger.yaml`) is used to design and visualiz
 ### Step 1: Open Extensions Marketplace
 
 1. Open Visual Studio Code.
-2. Click the **Extensions** icon on the left sidebar  
-   or press:
+2. Click the **Extensions** icon on the left sidebar.
 
 ### Step 2: Search for Extension
 
