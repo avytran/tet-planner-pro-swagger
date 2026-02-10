@@ -1,0 +1,21 @@
+SuccessResponse:
+  type: object
+  properties:
+    status:
+      type: string
+      enum: [success]
+      example: success
+    data:
+      type: object
+      description: The response payload (can be any object)
+
+ErrorResponse:
+  type: object
+  properties:
+    status:
+      type: string
+      enum: [error]
+      example: error
+    message:
+      type: string
+      example: Invalid request

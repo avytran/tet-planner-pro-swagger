@@ -10,7 +10,46 @@ shopping-items:
             $ref: "./schemas/shopping.schema.yaml#/ShoppingItemRequest"
     responses:
       "201":
-        description: Shopping item created
+        description: Shopping item created successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+      "400":
+        description: Invalid request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid shopping item data
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
   get:
     summary: Get all shopping items
@@ -26,49 +65,42 @@ shopping-items:
           type: string
           example: Food
         description: Filter by item category (Food, Gift, Decoration, Other)
-
       - name: timeline
         in: query
         schema:
           type: string
           enum: [BeforeTet, Tet30, Mung1, Mung2, Mung3]
         description: Filter by timeline
-
       - name: budgetId
         in: query
         schema:
           type: string
           format: uuid
         description: Filter by budget ID
-
       - name: taskId
         in: query
         schema:
           type: string
           format: uuid
         description: Filter by related task ID
-
       - name: dueDate
         in: query
         schema:
           type: string
           format: date
         description: Filter by due day (YYYY-MM-DD)
-
       - name: status
         in: query
         schema:
           type: string
           enum: [Planned, Bought, Cancelled]
         description: Filter by shopping item status
-
       # Search
       - name: keyword
         in: query
         schema:
           type: string
         description: Search by item name keyword
-
       # Sorting
       - name: sortBy
         in: query
@@ -76,14 +108,12 @@ shopping-items:
           type: string
           enum: [dued_time, price, quantity]
         description: Sort field
-
       - name: sortOrder
         in: query
         schema:
           type: string
           enum: [asc, desc]
         description: Sort order
-
       # Pagination
       - name: page
         in: query
@@ -92,7 +122,6 @@ shopping-items:
           minimum: 1
           default: 1
         description: Page number
-
       - name: pageSize
         in: query
         schema:
@@ -101,7 +130,6 @@ shopping-items:
           maximum: 100
           default: 10
         description: Number of items per page
-
     responses:
       "200":
         description: Successful response
@@ -110,28 +138,57 @@ shopping-items:
             schema:
               type: object
               properties:
-                page:
-                  type: integer
-                  example: 1
-                pageSize:
-                  type: integer
-                  example: 10
-                totalItems:
-                  type: integer
-                  example: 45
-                totalPages:
-                  type: integer
-                  example: 5
-                items:
-                  type: array
-                  items:
-                    $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
-
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  type: object
+                  properties:
+                    page:
+                      type: integer
+                      example: 1
+                    pageSize:
+                      type: integer
+                      example: 10
+                    totalItems:
+                      type: integer
+                      example: 45
+                    totalPages:
+                      type: integer
+                      example: 5
+                    items:
+                      type: array
+                      items:
+                        $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
       "400":
         description: Invalid query parameters
-
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid query parameters
       "500":
         description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
 shopping-items-id:
   get:
@@ -149,7 +206,42 @@ shopping-items-id:
         content:
           application/json:
             schema:
-              $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+      "404":
+        description: Shopping item not found
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Shopping item not found
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
   put:
     summary: Update all fields of a shopping item
@@ -169,6 +261,59 @@ shopping-items-id:
     responses:
       "200":
         description: Shopping item updated
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+      "400":
+        description: Invalid input
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid input
+      "404":
+        description: Shopping item not found
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Shopping item not found
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
   patch:
     summary: Update item quantity, price, or status
@@ -188,6 +333,59 @@ shopping-items-id:
     responses:
       "200":
         description: Shopping item partially updated
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+      "400":
+        description: Invalid input
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid input
+      "404":
+        description: Shopping item not found
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Shopping item not found
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
   delete:
     summary: Delete a shopping item
@@ -199,5 +397,45 @@ shopping-items-id:
         schema:
           type: string
     responses:
-      "204":
-        description: Shopping item deleted
+      "200":
+        description: Shopping item deleted successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  type: object
+                  example: { "message": "Shopping item deleted successfully" }
+      "404":
+        description: Shopping item not found
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Shopping item not found
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error

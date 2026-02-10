@@ -100,4 +100,8 @@ components:
       $ref: "./schemas/budget.schema.yaml#/Budget" 
     BudgetRequest:
       $ref: "./schemas/budget.schema.yaml#/BudgetRequest" 
+
+    # Budget
+    UserTotalBudget:
+      $ref: "./schemas/user.schema.yaml#/UserTotalBudget" 
       

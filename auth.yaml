@@ -14,9 +14,42 @@ auth-register:
         content:
           application/json:
             schema:
-              $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  $ref: "./schemas/auth.schema.yaml#/AuthResponse"
       "400":
         description: Bad request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid request
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
 auth-login:
   post:
@@ -34,9 +67,42 @@ auth-login:
         content:
           application/json:
             schema:
-              $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  $ref: "./schemas/auth.schema.yaml#/AuthResponse"
       "401":
         description: Invalid credentials
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid email or password
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
 auth-logout:
   post:
@@ -47,6 +113,46 @@ auth-logout:
     responses:
       "200":
         description: Logged out successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  type: object
+                  example: { "message": "Logged out successfully" }
+      "401":
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Unauthorized
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
 auth-profile:
   get:
@@ -60,9 +166,42 @@ auth-profile:
         content:
           application/json:
             schema:
-              $ref: "./schemas/auth.schema.yaml#/UserProfile"
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  $ref: "./schemas/auth.schema.yaml#/UserProfile"
       "401":
         description: Unauthorized
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Unauthorized
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
 
 auth-refresh-token:
   post:
@@ -80,6 +219,39 @@ auth-refresh-token:
         content:
           application/json:
             schema:
-              $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  $ref: "./schemas/auth.schema.yaml#/AuthResponse"
       "401":
         description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
