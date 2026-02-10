@@ -1,0 +1,94 @@
+RegisterRequest:
+  type: object
+  required:
+    - name
+    - email
+    - password
+  properties:
+    name:
+      type: string
+      example: John Doe
+    email:
+      type: string
+      format: email
+      example: john@example.com
+    password:
+      type: string
+      format: password
+      example: password123
+
+
+LoginRequest:
+  type: object
+  required:
+    - email
+    - password
+  properties:
+    email:
+      type: string
+      format: email
+      example: john@example.com
+    password:
+      type: string
+      format: password
+      example: password123
+
+
+RefreshTokenRequest:
+  type: object
+  required:
+    - refreshToken
+  properties:
+    refreshToken:
+      type: string
+      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+
+UserProfile:
+  type: object
+  properties:
+    id:
+      type: string
+      example: "1"
+    name:
+      type: string
+      example: John Doe
+    email:
+      type: string
+      format: email
+      example: john@example.com
+    createdAt:
+      type: string
+      format: date-time
+      example: "2026-01-01T10:00:00Z"
+    updatedAt:
+      type: string
+      format: date-time
+      example: "2026-01-10T10:00:00Z"
+
+
+AuthResponse:
+  type: object
+  properties:
+    accessToken:
+      type: string
+      example: access_token_here
+    refreshToken:
+      type: string
+      example: refresh_token_here
+    user:
+      $ref: "#/UserProfile"
+
+
+ErrorResponse:
+  type: object
+  properties:
+    statusCode:
+      type: integer
+      example: 401
+    message:
+      type: string
+      example: Invalid credentials
+    error:
+      type: string
+      example: Unauthorized

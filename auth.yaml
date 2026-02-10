@@ -1,0 +1,85 @@
+auth-register:
+  post:
+    summary: Register a new user account
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/auth.schema.yaml#/RegisterRequest"
+    responses:
+      "201":
+        description: User registered successfully
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+      "400":
+        description: Bad request
+
+auth-login:
+  post:
+    summary: User login and return access token
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/auth.schema.yaml#/LoginRequest"
+    responses:
+      "200":
+        description: Login successful
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+      "401":
+        description: Invalid credentials
+
+auth-logout:
+  post:
+    summary: Logout current user session
+    tags: [Auth]
+    security:
+      - bearerAuth: []
+    responses:
+      "200":
+        description: Logged out successfully
+
+auth-profile:
+  get:
+    summary: Get current logged-in user information
+    tags: [Auth]
+    security:
+      - bearerAuth: []
+    responses:
+      "200":
+        description: User profile retrieved
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/auth.schema.yaml#/UserProfile"
+      "401":
+        description: Unauthorized
+
+auth-refresh-token:
+  post:
+    summary: Refresh access token
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/auth.schema.yaml#/RefreshTokenRequest"
+    responses:
+      "200":
+        description: Token refreshed successfully
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+      "401":
+        description: Invalid refresh token

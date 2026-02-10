@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: Tet Task Management API
+  version: 1.0.0
+
+servers:
+  - url: /v1
+
+paths:
+  /auth/register:
+    $ref: "./auth.yaml#/auth-register"
+  /auth/login:
+    $ref: "./auth.yaml#/auth-login"
+  /auth/logout:
+    $ref: "./auth.yaml#/auth-logout"
+  /auth/profile:
+    $ref: "./auth.yaml#/auth-profile"
+  /auth/refresh-token:
+    $ref: "./auth.yaml#/auth-refresh-token"
+
+components:
+  schemas:
+    RegisterRequest:
+      $ref: "./schemas/auth.schema.yaml#/RegisterRequest"
+    LoginRequest:
+      $ref: "./schemas/auth.schema.yaml#/LoginRequest"
+    RefreshTokenRequest:
+      $ref: "./schemas/auth.schema.yaml#/RefreshTokenRequest"
+    AuthResponse:
+      $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+    UserProfile:
+      $ref: "./schemas/auth.schema.yaml#/UserProfile"
+    ErrorResponse:
+      $ref: "./schemas/auth.schema.yaml#/ErrorResponse"
