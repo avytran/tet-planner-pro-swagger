@@ -13,30 +13,125 @@ shopping-items:
         description: Shopping item created
 
   get:
-    summary: Get all shopping items (filter by category, timeline, or budget)
+    summary: Get all shopping items
     tags: [ShoppingItem]
+    description: >
+      Retrieve shopping items with filtering by category, timeline, budget, task, due date,
+      sorting by date/price/quantity, keyword search, and pagination.
     parameters:
-      - in: query
-        name: categoryId
+      # Filtering
+      - name: category
+        in: query
         schema:
           type: string
-      - in: query
-        name: timeline
+          example: Food
+        description: Filter by item category (Food, Gift, Decoration, Other)
+
+      - name: timeline
+        in: query
         schema:
-          $ref: "./schemas/shopping.schema.yaml#/Timeline"
-      - in: query
-        name: budget
+          type: string
+          enum: [BeforeTet, Tet30, Mung1, Mung2, Mung3]
+        description: Filter by timeline
+
+      - name: budgetId
+        in: query
         schema:
-          type: number
+          type: string
+          format: uuid
+        description: Filter by budget ID
+
+      - name: taskId
+        in: query
+        schema:
+          type: string
+          format: uuid
+        description: Filter by related task ID
+
+      - name: dueDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: Filter by due day (YYYY-MM-DD)
+
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum: [Planned, Bought, Cancelled]
+        description: Filter by shopping item status
+
+      # Search
+      - name: keyword
+        in: query
+        schema:
+          type: string
+        description: Search by item name keyword
+
+      # Sorting
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          enum: [dued_time, price, quantity]
+        description: Sort field
+
+      - name: sortOrder
+        in: query
+        schema:
+          type: string
+          enum: [asc, desc]
+        description: Sort order
+
+      # Pagination
+      - name: page
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+        description: Page number
+
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+        description: Number of items per page
+
     responses:
       "200":
-        description: List of shopping items
+        description: Successful response
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+              type: object
+              properties:
+                page:
+                  type: integer
+                  example: 1
+                pageSize:
+                  type: integer
+                  example: 10
+                totalItems:
+                  type: integer
+                  example: 45
+                totalPages:
+                  type: integer
+                  example: 5
+                items:
+                  type: array
+                  items:
+                    $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+
+      "400":
+        description: Invalid query parameters
+
+      "500":
+        description: Server error
 
 shopping-items-id:
   get:
