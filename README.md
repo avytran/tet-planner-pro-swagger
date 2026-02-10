@@ -4,14 +4,14 @@
 
 This document explains how to install the **OpenAPI (Swagger) Editor extension** and use it to view and edit the Swagger YAML file for the Tet Planner Pro system.
 
-The Swagger file (`tet-planner-pro-swagger.yaml`) is used to design and visualize system APIs without backend implementation.
+The Swagger file (`openapi.yaml`) is used to design and visualize system APIs without backend implementation.
 
 ---
 
 ## 2. Requirements
 
 - Visual Studio Code
-- Swagger YAML file: `tet-planner-pro-swagger.yaml`
+- Swagger YAML file: `openapi.yaml`
 - Internet connection (for extension installation)
 
 ---
@@ -39,9 +39,9 @@ In the search bar, type: **OpenAPI (Swagger) Editor**
 ### Step 1: Open Project Folder
 
 1. Open your project folder in VS Code.
-2. Locate the file: `tet-planner-pro-swagger.yaml`
+2. Locate the file: `openapi.yaml`
 
 ### Step 2: Preview Swagger Documentation
 
-1. Right-click on `tet-planner-pro-swagger.yaml`.
+1. Right-click on `openapi.yaml`.
 2. Select **Preview Swagger**.
