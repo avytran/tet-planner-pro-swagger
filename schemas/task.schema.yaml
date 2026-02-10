@@ -1,0 +1,117 @@
+# -------------------------
+# Task Category Schemas
+# -------------------------
+TaskCategory:
+  type: object
+  properties:
+    id:
+      type: string
+    userId:
+      type: string
+    name:
+      type: string
+
+TaskCategoryRequest:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+
+# -------------------------
+# Task Schemas
+# -------------------------
+Task:
+  type: object
+  properties:
+    id:
+      type: string
+    categoryId:
+      type: string
+    title:
+      type: string
+    duedTime:
+      type: string
+      format: date-time
+    timeline:
+      $ref: "#/Timeline"
+    priority:
+      $ref: "#/Priority"
+    status:
+      $ref: "#/Status"
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+    isOverdue:
+      type: boolean
+
+TaskRequest:
+  type: object
+  required:
+    - categoryId
+    - title
+    - duedTime
+    - timeline
+    - priority
+    - status
+  properties:
+    categoryId:
+      type: string
+    title:
+      type: string
+    duedTime:
+      type: string
+      format: date-time
+    timeline:
+      $ref: "#/Timeline"
+    priority:
+      $ref: "#/Priority"
+    status:
+      $ref: "#/Status"
+
+TaskPatchRequest:
+  type: object
+  properties:
+    categoryId:
+      type: string
+    title:
+      type: string
+    duedTime:
+      type: string
+      format: date-time
+    timeline:
+      $ref: "#/Timeline"
+    priority:
+      $ref: "#/Priority"
+    status:
+      $ref: "#/Status"
+
+# -------------------------
+# Enums
+# -------------------------
+Timeline:
+  type: string
+  enum:
+    - BeforeTet
+    - Tet30
+    - Mung1
+    - Mung2
+    - Mung3
+
+Priority:
+  type: string
+  enum:
+    - Low
+    - Medium
+    - High
+
+Status:
+  type: string
+  enum:
+    - Todo
+    - InProgress
+    - Done

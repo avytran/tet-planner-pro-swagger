@@ -1,0 +1,195 @@
+# Task Category Endpoints
+task-categories:
+  post:
+    summary: Create a new task category for the current user
+    tags: [TaskCategory]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/task.schema.yaml#/TaskCategoryRequest"
+    responses:
+      "201":
+        description: Task category created
+
+  get:
+    summary: Get all task categories of the current user
+    tags: [TaskCategory]
+    responses:
+      "200":
+        description: List of task categories
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas/task.schema.yaml#/TaskCategory"
+
+task-categories-id:
+  get:
+    summary: Get task category details by ID
+    tags: [TaskCategory]
+    parameters:
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Task category detail
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/task.schema.yaml#/TaskCategory"
+
+  put:
+    summary: Update a task category
+    tags: [TaskCategory]
+    parameters:
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/task.schema.yaml#/TaskCategoryRequest"
+    responses:
+      "200":
+        description: Task category updated
+
+  delete:
+    summary: Delete a task category
+    tags: [TaskCategory]
+    parameters:
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      "204":
+        description: Task category deleted
+
+# Task Endpoints
+tasks:
+  post:
+    summary: Create a new task
+    tags: [Task]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/task.schema.yaml#/TaskRequest"
+    responses:
+      "201":
+        description: Task created
+
+  get:
+    summary: Get all tasks with filtering
+    tags: [Task]
+    parameters:
+      - in: query
+        name: categoryId
+        schema:
+          type: string
+      - in: query
+        name: timeline
+        schema:
+          $ref: "./schemas/task.schema.yaml#/Timeline"
+      - in: query
+        name: priority
+        schema:
+          $ref: "./schemas/task.schema.yaml#/Priority"
+      - in: query
+        name: status
+        schema:
+          $ref: "./schemas/task.schema.yaml#/Status"
+      - in: query
+        name: overdue
+        schema:
+          type: boolean
+    responses:
+      "200":
+        description: List of tasks
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas/task.schema.yaml#/Task"
+
+tasks-id:
+  get:
+    summary: Get task details by ID
+    tags: [Task]
+    parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Task detail
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/task.schema.yaml#/Task"
+
+  put:
+    summary: Update all fields of a task
+    tags: [Task]
+    parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/task.schema.yaml#/TaskRequest"
+    responses:
+      "200":
+        description: Task updated
+
+  patch:
+    summary: Partially update a task (e.g., change status only)
+    tags: [Task]
+    parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/task.schema.yaml#/TaskPatchRequest"
+    responses:
+      "200":
+        description: Task updated
+
+  delete:
+    summary: Delete a task
+    tags: [Task]
+    parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      "204":
+        description: Task deleted

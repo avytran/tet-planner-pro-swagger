@@ -7,6 +7,7 @@ servers:
   - url: /v1
 
 paths:
+  # Auth
   /auth/register:
     $ref: "./auth.yaml#/auth-register"
   /auth/login:
@@ -18,8 +19,21 @@ paths:
   /auth/refresh-token:
     $ref: "./auth.yaml#/auth-refresh-token"
 
+  # Task Category
+  /task-categories:
+    $ref: "./task.yaml#/task-categories"
+  /task-categories/{categoryId}:
+    $ref: "./task.yaml#/task-categories-id"
+
+  # Tasks
+  /tasks:
+    $ref: "./task.yaml#/tasks"
+  /tasks/{taskId}:
+    $ref: "./task.yaml#/tasks-id"
+
 components:
   schemas:
+  # Auth
     RegisterRequest:
       $ref: "./schemas/auth.schema.yaml#/RegisterRequest"
     LoginRequest:
@@ -32,3 +46,26 @@ components:
       $ref: "./schemas/auth.schema.yaml#/UserProfile"
     ErrorResponse:
       $ref: "./schemas/auth.schema.yaml#/ErrorResponse"
+
+    # Task Category
+    TaskCategory:
+      $ref: "./schemas/task.schema.yaml#/TaskCategory"
+    TaskCategoryRequest:
+      $ref: "./schemas/task.schema.yaml#/TaskCategoryRequest"
+
+    # Task
+    Task:
+      $ref: "./schemas/task.schema.yaml#/Task"
+    
+    TaskRequest:
+      $ref: "./schemas/task.schema.yaml#/TaskRequest"
+    
+    # Task Enums
+    Timeline:
+      $ref: "./schemas/task.schema.yaml#/Timeline"
+
+    Priority:
+      $ref: "./schemas/task.schema.yaml#/Priority"
+
+    Status:
+      $ref: "./schemas/task.schema.yaml#/Status"
