@@ -1,0 +1,72 @@
+ShoppingItem:
+  type: object
+  properties:
+    id:
+      type: string
+    categoryId:
+      type: string
+    name:
+      type: string
+    quantity:
+      type: integer
+    price:
+      type: number
+    timeline:
+      $ref: "#/Timeline"
+    status:
+      $ref: "#/ItemStatus"
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+
+ShoppingItemRequest:
+  type: object
+  required:
+    - categoryId
+    - name
+    - quantity
+    - price
+    - timeline
+    - status
+  properties:
+    categoryId:
+      type: string
+    name:
+      type: string
+    quantity:
+      type: integer
+    price:
+      type: number
+    timeline:
+      $ref: "#/Timeline"
+    status:
+      $ref: "#/ItemStatus"
+
+ShoppingItemPatchRequest:
+  type: object
+  properties:
+    quantity:
+      type: integer
+    price:
+      type: number
+    status:
+      $ref: "#/ItemStatus"
+
+Timeline:
+  type: string
+  enum:
+    - BeforeTet
+    - Tet30
+    - Mung1
+    - Mung2
+    - Mung3
+
+ItemStatus:
+  type: string
+  enum:
+    - Pending
+    - Purchased
+    - Cancelled

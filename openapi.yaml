@@ -31,6 +31,12 @@ paths:
   /tasks/{taskId}:
     $ref: "./task.yaml#/tasks-id"
 
+  # Shopping Items
+  /shopping-items:
+    $ref: "./shopping.yaml#/shopping-items"
+  /shopping-items/{itemId}:
+    $ref: "./shopping.yaml#/shopping-items-id"
+
 components:
   schemas:
   # Auth
@@ -56,16 +62,28 @@ components:
     # Task
     Task:
       $ref: "./schemas/task.schema.yaml#/Task"
-    
     TaskRequest:
       $ref: "./schemas/task.schema.yaml#/TaskRequest"
+    TaskPatchRequest:
+      $ref: "./schemas/task.schema.yaml#/TaskPatchRequest"
     
     # Task Enums
     Timeline:
       $ref: "./schemas/task.schema.yaml#/Timeline"
-
     Priority:
       $ref: "./schemas/task.schema.yaml#/Priority"
-
     Status:
       $ref: "./schemas/task.schema.yaml#/Status"
+    
+    # Shopping Items
+    ShoppingItem:
+      $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+    ShoppingItemRequest:
+      $ref: "./schemas/shopping.schema.yaml#/ShoppingItemRequest"
+    ShoppingItemPatchRequest:
+      $ref: "./schemas/shopping.schema.yaml#/ShoppingItemPatchRequest"
+
+    # Shopping Items Enum
+    ItemStatus:
+      $ref: "./schemas/shopping.schema.yaml#/ItemStatus" 
+

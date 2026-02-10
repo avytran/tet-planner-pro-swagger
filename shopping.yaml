@@ -1,0 +1,108 @@
+shopping-items:
+  post:
+    summary: Create a new shopping item
+    tags: [ShoppingItem]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/shopping.schema.yaml#/ShoppingItemRequest"
+    responses:
+      "201":
+        description: Shopping item created
+
+  get:
+    summary: Get all shopping items (filter by category, timeline, or budget)
+    tags: [ShoppingItem]
+    parameters:
+      - in: query
+        name: categoryId
+        schema:
+          type: string
+      - in: query
+        name: timeline
+        schema:
+          $ref: "./schemas/shopping.schema.yaml#/Timeline"
+      - in: query
+        name: budget
+        schema:
+          type: number
+    responses:
+      "200":
+        description: List of shopping items
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+
+shopping-items-id:
+  get:
+    summary: Get shopping item details by ID
+    tags: [ShoppingItem]
+    parameters:
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Shopping item detail
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+
+  put:
+    summary: Update all fields of a shopping item
+    tags: [ShoppingItem]
+    parameters:
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/shopping.schema.yaml#/ShoppingItemRequest"
+    responses:
+      "200":
+        description: Shopping item updated
+
+  patch:
+    summary: Update item quantity, price, or status
+    tags: [ShoppingItem]
+    parameters:
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/shopping.schema.yaml#/ShoppingItemPatchRequest"
+    responses:
+      "200":
+        description: Shopping item partially updated
+
+  delete:
+    summary: Delete a shopping item
+    tags: [ShoppingItem]
+    parameters:
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      "204":
+        description: Shopping item deleted
