@@ -42,6 +42,8 @@ paths:
     $ref: "./budget.yaml#/budgets"
   /budgets/{budgetId}:
     $ref: "./budget.yaml#/budgets-id"
+  /users/total-budget:
+    $ref: "./user.yaml#/total-budget"
 
 components:
   schemas:

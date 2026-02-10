@@ -27,21 +27,33 @@ budgets:
 
 budgets-id:
   get:
-    summary: Get budget details by ID
+    summary: Get budget details by ID with spending summary
     tags: [Budget]
+    description: >
+      Retrieve budget information by ID. The summary field represents the total spending
+      of this budget calculated as SUM(price × quantity) from all shopping items
+      belonging to this budgetId
     parameters:
       - name: budgetId
         in: path
         required: true
         schema:
           type: string
+          format: uuid
+        description: Budget ID
+
     responses:
       "200":
-        description: Budget detail
+        description: Budget detail with calculated summary
         content:
           application/json:
             schema:
               $ref: "./schemas/budget.schema.yaml#/Budget"
+      "404":
+        description: Budget not found
+
+      "500":
+        description: Server error
 
   put:
     summary: Update budget name or budget amount

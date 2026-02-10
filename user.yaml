@@ -1,0 +1,35 @@
+total-budget:
+  get:
+    tags:
+      - User
+    summary: Get the total budget of the current user
+    description: Retrieve the total_budget field from the User collection.
+    responses:
+      "200":
+        description: Total budget retrieved successfully
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/user.schema.yaml#/UserTotalBudget"
+
+  patch:
+    tags:
+      - User
+    summary: Update the total budget of the current user
+    description: Update the total_budget field in the User collection.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - totalBudget
+            $ref: "./schemas/user.schema.yaml#/UserTotalBudget"
+    responses:
+      "200":
+        description: Total budget updated successfully
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/user.schema.yaml#/UserTotalBudget"

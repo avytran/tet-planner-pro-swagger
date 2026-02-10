@@ -3,18 +3,26 @@ Budget:
   properties:
     id:
       type: string
+      format: uuid
     userId:
       type: string
+      format: uuid
     name:
       type: string
-    amount:
+    allocatedAmount:
       type: number
+      format: double
     createdAt:
       type: string
       format: date-time
     updatedAt:
       type: string
       format: date-time
+    summary:
+      type: number
+      format: double
+      description: Total spent for this budget (SUM(price × quantity))
+      example: 2300000
 
 BudgetRequest:
   type: object
