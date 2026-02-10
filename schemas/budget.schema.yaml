@@ -1,0 +1,28 @@
+Budget:
+  type: object
+  properties:
+    id:
+      type: string
+    userId:
+      type: string
+    name:
+      type: string
+    amount:
+      type: number
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+
+BudgetRequest:
+  type: object
+  required:
+    - name
+    - amount
+  properties:
+    name:
+      type: string
+    amount:
+      type: number

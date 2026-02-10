@@ -37,6 +37,12 @@ paths:
   /shopping-items/{itemId}:
     $ref: "./shopping.yaml#/shopping-items-id"
 
+  # Budget
+  /budgets:
+    $ref: "./budget.yaml#/budgets"
+  /budgets/{budgetId}:
+    $ref: "./budget.yaml#/budgets-id"
+
 components:
   schemas:
   # Auth
@@ -87,3 +93,9 @@ components:
     ItemStatus:
       $ref: "./schemas/shopping.schema.yaml#/ItemStatus" 
 
+    # Budget
+    Budget:
+      $ref: "./schemas/budget.schema.yaml#/Budget" 
+    BudgetRequest:
+      $ref: "./schemas/budget.schema.yaml#/BudgetRequest" 
+      
