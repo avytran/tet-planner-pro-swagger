@@ -59,41 +59,33 @@ shopping-items:
       sorting by date/price/quantity, keyword search, and pagination.
     parameters:
       # Filtering
-      - name: category
-        in: query
-        schema:
-          type: string
-          example: Food
-        description: Filter by item category (Food, Gift, Decoration, Other)
-      - name: timeline
-        in: query
-        schema:
-          type: string
-          enum: [BeforeTet, Tet30, Mung1, Mung2, Mung3]
-        description: Filter by timeline
       - name: budgetId
         in: query
         schema:
           type: string
-          format: uuid
         description: Filter by budget ID
       - name: taskId
         in: query
         schema:
           type: string
-          format: uuid
         description: Filter by related task ID
-      - name: dueDate
+      - name: timeline
+        in: query
+        schema:
+          type: string
+          enum: [Pre Tet, During Tet, After Tet]
+        description: Filter by timeline
+      - name: duedDate
         in: query
         schema:
           type: string
           format: date
-        description: Filter by due day (YYYY-MM-DD)
+        description: Filter by dued day (YYYY-MM-DD)
       - name: status
         in: query
         schema:
           type: string
-          enum: [Planned, Bought, Cancelled]
+          enum: [Planning, Completed]
         description: Filter by shopping item status
       # Search
       - name: keyword
