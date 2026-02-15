@@ -46,8 +46,6 @@ Task:
     updatedAt:
       type: string
       format: date-time
-    isOverdue:
-      type: boolean
 
 TaskRequest:
   type: object
@@ -96,11 +94,9 @@ TaskPatchRequest:
 Timeline:
   type: string
   enum:
-    - BeforeTet
-    - Tet30
-    - Mung1
-    - Mung2
-    - Mung3
+    - Pre Tet
+    - During Tet
+    - After Tet
 
 Priority:
   type: string
@@ -113,5 +109,5 @@ Status:
   type: string
   enum:
     - Todo
-    - InProgress
+    - In Progress
     - Done
