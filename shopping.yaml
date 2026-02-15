@@ -214,6 +214,20 @@ shopping-items-id:
                   example: success
                 data:
                   $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+      "400":
+        description: Invalid request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid request
       "404":
         description: Shopping item not found
         content:
@@ -273,7 +287,7 @@ shopping-items-id:
                 data:
                   $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
       "400":
-        description: Invalid input
+        description: Invalid request
         content:
           application/json:
             schema:
@@ -285,79 +299,7 @@ shopping-items-id:
                   example: error
                 message:
                   type: string
-                  example: Invalid input
-      "404":
-        description: Shopping item not found
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  enum: [error]
-                  example: error
-                message:
-                  type: string
-                  example: Shopping item not found
-      "500":
-        description: Server error
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  enum: [error]
-                  example: error
-                message:
-                  type: string
-                  example: Internal server error
-
-  patch:
-    summary: Update item quantity, price, or status
-    tags: [ShoppingItem]
-    parameters:
-      - name: itemId
-        in: path
-        required: true
-        schema:
-          type: string
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: "./schemas/shopping.schema.yaml#/ShoppingItemPatchRequest"
-    responses:
-      "200":
-        description: Shopping item partially updated
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  enum: [success]
-                  example: success
-                data:
-                  $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
-      "400":
-        description: Invalid input
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  enum: [error]
-                  example: error
-                message:
-                  type: string
-                  example: Invalid input
+                  example: Invalid request
       "404":
         description: Shopping item not found
         content:

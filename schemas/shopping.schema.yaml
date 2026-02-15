@@ -3,7 +3,9 @@ ShoppingItem:
   properties:
     id:
       type: string
-    categoryId:
+    budgetId:
+      type: string
+    taskId:
       type: string
     name:
       type: string
@@ -25,21 +27,28 @@ ShoppingItem:
 ShoppingItemRequest:
   type: object
   required:
-    - categoryId
+    - budgetId
+    - taskId
     - name
-    - quantity
     - price
-    - timeline
+    - quantity
     - status
+    - timeline
+    - duedTime
   properties:
-    categoryId:
+    budgetId:
+      type: string
+    taskId:
       type: string
     name:
       type: string
-    quantity:
-      type: integer
     price:
       type: number
+    quantity:
+      type: integer
+    duedTime:
+      type: string
+      format: date-time
     timeline:
       $ref: "#/Timeline"
     status:
@@ -58,15 +67,12 @@ ShoppingItemPatchRequest:
 Timeline:
   type: string
   enum:
-    - BeforeTet
-    - Tet30
-    - Mung1
-    - Mung2
-    - Mung3
+    - Pre Tet
+    - During Tet
+    - After Tet
 
 ItemStatus:
   type: string
   enum:
-    - Pending
-    - Purchased
-    - Cancelled
+    - Planning
+    - Completed
