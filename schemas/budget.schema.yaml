@@ -3,10 +3,8 @@ Budget:
   properties:
     id:
       type: string
-      format: uuid
     userId:
       type: string
-      format: uuid
     name:
       type: string
     allocatedAmount:
@@ -28,9 +26,9 @@ BudgetRequest:
   type: object
   required:
     - name
-    - amount
+    - allocatedAmount
   properties:
     name:
       type: string
-    amount:
+    allocatedAmount:
       type: number
