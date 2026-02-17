@@ -1,7 +1,13 @@
 shopping-items:
   post:
-    summary: Create a new shopping item
+    summary: Create a new shopping item for the current user
     tags: [ShoppingItem]
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
@@ -52,12 +58,17 @@ shopping-items:
                   example: Internal server error
 
   get:
-    summary: Get all shopping items
+    summary: Get all shopping items for the current user
     tags: [ShoppingItem]
     description: >
       Retrieve shopping items with filtering by category, timeline, budget, task, due date,
       sorting by date/price/quantity, keyword search, and pagination.
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       # Filtering
       - name: budgetId
         in: query
@@ -184,9 +195,14 @@ shopping-items:
 
 shopping-items-id:
   get:
-    summary: Get shopping item details by ID
+    summary: Get shopping item details by ID for the current user
     tags: [ShoppingItem]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: itemId
         in: path
         required: true
@@ -250,9 +266,14 @@ shopping-items-id:
                   example: Internal server error
 
   put:
-    summary: Update all fields of a shopping item
+    summary: Update all fields of a shopping item for the current user
     tags: [ShoppingItem]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: itemId
         in: path
         required: true
@@ -322,9 +343,14 @@ shopping-items-id:
                   example: Internal server error
 
   delete:
-    summary: Delete a shopping item
+    summary: Delete a shopping item for the current user
     tags: [ShoppingItem]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: itemId
         in: path
         required: true

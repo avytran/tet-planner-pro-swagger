@@ -20,29 +20,29 @@ paths:
     $ref: "./auth.yaml#/auth-refresh-token"
 
   # Task Category
-  /task-categories:
+  /users/{userId}/task-categories:
     $ref: "./task.yaml#/task-categories"
-  /task-categories/{categoryId}:
+  /users/{userId}/task-categories/{categoryId}:
     $ref: "./task.yaml#/task-categories-id"
 
   # Tasks
-  /tasks:
+  /users/{userId}/tasks:
     $ref: "./task.yaml#/tasks"
-  /tasks/{taskId}:
+  /users/{userId}/tasks/{taskId}:
     $ref: "./task.yaml#/tasks-id"
 
   # Shopping Items
-  /shopping-items:
+  /users/{userId}/shopping-items:
     $ref: "./shopping.yaml#/shopping-items"
-  /shopping-items/{itemId}:
+  /users/{userId}/shopping-items/{itemId}:
     $ref: "./shopping.yaml#/shopping-items-id"
 
   # Budget
-  /budgets:
+  /users/{userId}/budgets:
     $ref: "./budget.yaml#/budgets"
-  /budgets/{budgetId}:
+  /users/{userId}/budgets/{budgetId}:
     $ref: "./budget.yaml#/budgets-id"
-  /users/total-budget:
+  /users/{userId}/total-budget:
     $ref: "./user.yaml#/total-budget"
 
 components:

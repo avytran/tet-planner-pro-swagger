@@ -3,6 +3,12 @@ task-categories:
   post:
     summary: Create a new task category for the current user
     tags: [TaskCategory]
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
@@ -55,6 +61,12 @@ task-categories:
   get:
     summary: Get all task categories of the current user
     tags: [TaskCategory]
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
     responses:
       "200":
         description: List of task categories
@@ -88,9 +100,14 @@ task-categories:
 
 task-categories-id:
   get:
-    summary: Get task category details by ID
+    summary: Get task category details by ID for the current user
     tags: [TaskCategory]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: categoryId
         in: path
         required: true
@@ -140,9 +157,14 @@ task-categories-id:
                   example: Internal server error
 
   put:
-    summary: Update a task category
+    summary: Update a task category for the current user
     tags: [TaskCategory]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: categoryId
         in: path
         required: true
@@ -212,9 +234,14 @@ task-categories-id:
                   example: Internal server error
 
   delete:
-    summary: Delete a task category
+    summary: Delete a task category for the current user
     tags: [TaskCategory]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: categoryId
         in: path
         required: true
@@ -267,8 +294,14 @@ task-categories-id:
 # Task Endpoints
 tasks:
   post:
-    summary: Create a new task
+    summary: Create a new task for the current user
     tags: [Task]
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
@@ -319,9 +352,14 @@ tasks:
                   example: Internal server error
 
   get:
-    summary: Get all tasks with filtering
+    summary: Get all tasks with filtering for the current user
     tags: [Task]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - in: query
         name: categoryId
         schema:
@@ -375,9 +413,14 @@ tasks:
 
 tasks-id:
   get:
-    summary: Get task details by ID
+    summary: Get task details by ID for the current user
     tags: [Task]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: taskId
         in: path
         required: true
@@ -427,9 +470,14 @@ tasks-id:
                   example: Internal server error
 
   put:
-    summary: Update all fields of a task
+    summary: Update all fields of a task for the current user
     tags: [Task]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: taskId
         in: path
         required: true
@@ -499,9 +547,14 @@ tasks-id:
                   example: Internal server error
 
   patch:
-    summary: Partially update a task (e.g., change status only)
+    summary: Partially update a task (e.g., change status only) for the current user
     tags: [Task]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: taskId
         in: path
         required: true
@@ -571,9 +624,14 @@ tasks-id:
                   example: Internal server error
 
   delete:
-    summary: Delete a task
+    summary: Delete a task for the current user
     tags: [Task]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: taskId
         in: path
         required: true

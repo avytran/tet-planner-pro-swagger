@@ -4,6 +4,12 @@ total-budget:
       - User
     summary: Get the total budget of the current user
     description: Retrieve the total_budget field from the User collection.
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
     responses:
       "200":
         description: Total budget retrieved successfully
@@ -52,6 +58,12 @@ total-budget:
       - User
     summary: Update the total budget of the current user
     description: Update the total_budget field in the User collection.
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:

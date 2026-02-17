@@ -1,7 +1,13 @@
 budgets:
   post:
-    summary: Create a new budget
+    summary: Create a new budget for the current user
     tags: [Budget]
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
     requestBody:
       required: true
       content:
@@ -52,8 +58,14 @@ budgets:
                   example: Internal server error
 
   get:
-    summary: Get all budgets of the current user
+    summary: Get all budgets of the current user 
     tags: [Budget]
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
     responses:
       "200":
         description: List of budgets
@@ -101,13 +113,18 @@ budgets:
 
 budgets-id:
   get:
-    summary: Get budget details by ID with spending summary
+    summary: Get budget details by ID with spending summary for the current user
     tags: [Budget]
     description: >
       Retrieve budget information by ID. The summary field represents the total spending
       of this budget calculated as SUM(price × quantity) from all shopping items
       belonging to this budgetId.
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: budgetId
         in: path
         required: true
@@ -172,9 +189,14 @@ budgets-id:
                   example: Internal server error
 
   put:
-    summary: Update budget name or allocated amount
+    summary: Update budget name or allocated amount for the current user
     tags: [Budget]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: budgetId
         in: path
         required: true
@@ -244,9 +266,14 @@ budgets-id:
                   example: Internal server error
 
   delete:
-    summary: Delete a budget
+    summary: Delete a budget for the current user
     tags: [Budget]
     parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       - name: budgetId
         in: path
         required: true
