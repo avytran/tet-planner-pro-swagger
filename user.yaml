@@ -2,6 +2,8 @@ total-budget:
   get:
     tags:
       - User
+    security:
+      - bearerAuth: []
     summary: Get the total budget of the current user
     description: Retrieve the total_budget field from the User collection.
     parameters:
@@ -56,6 +58,8 @@ total-budget:
   patch:
     tags:
       - User
+    security:
+      - bearerAuth: []
     summary: Update the total budget of the current user
     description: Update the total_budget field in the User collection.
     parameters:

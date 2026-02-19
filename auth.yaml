@@ -21,7 +21,7 @@ auth-register:
                   enum: [success]
                   example: success
                 data:
-                  $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+                  $ref: "./schemas/auth.schema.yaml#/UserProfile"
       "400":
         description: Bad request
         content:
@@ -62,7 +62,7 @@ auth-login:
           schema:
             $ref: "./schemas/auth.schema.yaml#/LoginRequest"
     responses:
-      "200":
+      "201":
         description: Login successful
         content:
           application/json:
@@ -89,56 +89,6 @@ auth-login:
                 message:
                   type: string
                   example: Invalid email or password
-      "500":
-        description: Server error
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  enum: [error]
-                  example: error
-                message:
-                  type: string
-                  example: Internal server error
-
-auth-logout:
-  post:
-    summary: Logout current user session
-    tags: [Auth]
-    security:
-      - bearerAuth: []
-    responses:
-      "200":
-        description: Logged out successfully
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  enum: [success]
-                  example: success
-                data:
-                  type: object
-                  example: { "message": "Logged out successfully" }
-      "401":
-        description: Unauthorized
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                status:
-                  type: string
-                  enum: [error]
-                  example: error
-                message:
-                  type: string
-                  example: Unauthorized
       "500":
         description: Server error
         content:
@@ -214,7 +164,7 @@ auth-refresh-token:
           schema:
             $ref: "./schemas/auth.schema.yaml#/RefreshTokenRequest"
     responses:
-      "200":
+      "201":
         description: Token refreshed successfully
         content:
           application/json:
@@ -226,7 +176,7 @@ auth-refresh-token:
                   enum: [success]
                   example: success
                 data:
-                  $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+                  $ref: "./schemas/auth.schema.yaml#/RefreshTokenResponse"
       "401":
         description: Invalid refresh token
         content:

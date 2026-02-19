@@ -2,6 +2,8 @@ shopping-items:
   post:
     summary: Create a new shopping item for the current user
     tags: [ShoppingItem]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -42,6 +44,20 @@ shopping-items:
                 message:
                   type: string
                   example: Invalid shopping item data
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -60,6 +76,8 @@ shopping-items:
   get:
     summary: Get all shopping items for the current user
     tags: [ShoppingItem]
+    security:
+      - bearerAuth: []
     description: >
       Retrieve shopping items with filtering by category, timeline, budget, task, due date,
       sorting by date/price/quantity, keyword search, and pagination.
@@ -178,6 +196,20 @@ shopping-items:
                 message:
                   type: string
                   example: Invalid query parameters
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -197,6 +229,8 @@ shopping-items-id:
   get:
     summary: Get shopping item details by ID for the current user
     tags: [ShoppingItem]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -250,6 +284,20 @@ shopping-items-id:
                 message:
                   type: string
                   example: Shopping item not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -268,6 +316,8 @@ shopping-items-id:
   put:
     summary: Update all fields of a shopping item for the current user
     tags: [ShoppingItem]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -298,7 +348,7 @@ shopping-items-id:
                   enum: [success]
                   example: success
                 data:
-                  $ref: "./schemas/shopping.schema.yaml#/ShoppingItem"
+                  $ref: "./schemas/shopping.schema.yaml#/UpdatingShoppingItem"
       "400":
         description: Invalid request
         content:
@@ -327,6 +377,20 @@ shopping-items-id:
                 message:
                   type: string
                   example: Shopping item not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -345,6 +409,8 @@ shopping-items-id:
   delete:
     summary: Delete a shopping item for the current user
     tags: [ShoppingItem]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -385,6 +451,20 @@ shopping-items-id:
                 message:
                   type: string
                   example: Shopping item not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:

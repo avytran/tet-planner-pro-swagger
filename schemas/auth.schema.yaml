@@ -1,11 +1,11 @@
 RegisterRequest:
   type: object
   required:
-    - name
+    - fullName
     - email
     - password
   properties:
-    name:
+    fullName:
       type: string
       example: John Doe
     email:
@@ -79,6 +79,15 @@ AuthResponse:
     user:
       $ref: "#/UserProfile"
 
+RefreshTokenResponse:
+  type: object
+  properties:
+    accessToken:
+      type: string
+      example: access_token_here
+    refreshToken:
+      type: string
+      example: refresh_token_here
 
 ErrorResponse:
   type: object

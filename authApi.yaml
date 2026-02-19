@@ -1,0 +1,41 @@
+openapi: 3.0.3
+info:
+  title: Tet Task Auth API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3001/v1
+
+paths:
+  # Auth
+  /auth/register:
+    $ref: "./auth.yaml#/auth-register"
+  /auth/login:
+    $ref: "./auth.yaml#/auth-login"
+  /auth/profile:
+    $ref: "./auth.yaml#/auth-profile"
+  /auth/refresh-token:
+    $ref: "./auth.yaml#/auth-refresh-token"
+
+components:
+  schemas:
+  # Auth
+    RegisterRequest:
+      $ref: "./schemas/auth.schema.yaml#/RegisterRequest"
+    LoginRequest:
+      $ref: "./schemas/auth.schema.yaml#/LoginRequest"
+    RefreshTokenRequest:
+      $ref: "./schemas/auth.schema.yaml#/RefreshTokenRequest"
+    AuthResponse:
+      $ref: "./schemas/auth.schema.yaml#/AuthResponse"
+    RefreshTokenResponse:
+      $ref: "./schemas/auth.schema.yaml#/RefreshTokenResponse"
+    UserProfile:
+      $ref: "./schemas/auth.schema.yaml#/UserProfile"
+    ErrorResponse:
+      $ref: "./schemas/auth.schema.yaml#/ErrorResponse"
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -3,6 +3,8 @@ task-categories:
   post:
     summary: Create a new task category for the current user
     tags: [TaskCategory]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -43,6 +45,20 @@ task-categories:
                 message:
                   type: string
                   example: Invalid task category data
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -61,6 +77,8 @@ task-categories:
   get:
     summary: Get all task categories of the current user
     tags: [TaskCategory]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -83,6 +101,20 @@ task-categories:
                   type: array
                   items:
                     $ref: "./schemas/task.schema.yaml#/TaskCategory"
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -102,6 +134,8 @@ task-categories-id:
   get:
     summary: Get task category details by ID for the current user
     tags: [TaskCategory]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -141,6 +175,20 @@ task-categories-id:
                 message:
                   type: string
                   example: Task category not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -159,6 +207,8 @@ task-categories-id:
   put:
     summary: Update a task category for the current user
     tags: [TaskCategory]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -218,6 +268,20 @@ task-categories-id:
                 message:
                   type: string
                   example: Task category not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -236,6 +300,8 @@ task-categories-id:
   delete:
     summary: Delete a task category for the current user
     tags: [TaskCategory]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -276,6 +342,20 @@ task-categories-id:
                 message:
                   type: string
                   example: Task category not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -296,6 +376,8 @@ tasks:
   post:
     summary: Create a new task for the current user
     tags: [Task]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -336,6 +418,20 @@ tasks:
                 message:
                   type: string
                   example: Invalid task data
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -354,6 +450,8 @@ tasks:
   get:
     summary: Get all tasks with filtering for the current user
     tags: [Task]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -396,6 +494,20 @@ tasks:
                   type: array
                   items:
                     $ref: "./schemas/task.schema.yaml#/Task"
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -415,6 +527,8 @@ tasks-id:
   get:
     summary: Get task details by ID for the current user
     tags: [Task]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -454,6 +568,20 @@ tasks-id:
                 message:
                   type: string
                   example: Task not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -472,6 +600,8 @@ tasks-id:
   put:
     summary: Update all fields of a task for the current user
     tags: [Task]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -531,6 +661,20 @@ tasks-id:
                 message:
                   type: string
                   example: Task not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -549,6 +693,8 @@ tasks-id:
   patch:
     summary: Partially update a task (e.g., change status only) for the current user
     tags: [Task]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -608,6 +754,20 @@ tasks-id:
                 message:
                   type: string
                   example: Task not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:
@@ -626,6 +786,8 @@ tasks-id:
   delete:
     summary: Delete a task for the current user
     tags: [Task]
+    security:
+      - bearerAuth: []
     parameters:
       - name: userId
         in: path
@@ -666,6 +828,20 @@ tasks-id:
                 message:
                   type: string
                   example: Task not found
+      "401":
+        description: Invalid refresh token
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid refresh token
       "500":
         description: Server error
         content:

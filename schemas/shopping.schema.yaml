@@ -3,6 +3,42 @@ ShoppingItem:
   properties:
     id:
       type: string
+    budget:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    task:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+    name:
+      type: string
+    quantity:
+      type: integer
+    price:
+      type: number
+    timeline:
+      $ref: "#/Timeline"
+    status:
+      $ref: "#/ItemStatus"
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+
+UpdatingShoppingItem:
+  type: object
+  properties:
+    id:
+      type: string
     budgetId:
       type: string
     taskId:
