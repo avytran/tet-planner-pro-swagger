@@ -103,9 +103,9 @@ ShoppingItemPatchRequest:
 Timeline:
   type: string
   enum:
-    - Pre Tet
-    - During Tet
-    - After Tet
+    - Pre_Tet
+    - During_Tet
+    - After_Tet
 
 ItemStatus:
   type: string

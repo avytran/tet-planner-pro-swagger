@@ -102,7 +102,7 @@ shopping-items:
         in: query
         schema:
           type: string
-          enum: [Pre Tet, During Tet, After Tet]
+          enum: [Pre_Tet, During_Tet, After_Tet]
         description: Filter by timeline
       - name: duedDate
         in: query
