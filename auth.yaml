@@ -205,3 +205,103 @@ auth-refresh-token:
                 message:
                   type: string
                   example: Internal server error
+
+auth-forgot-password:
+  post:
+    summary: Request a link to reset password
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/auth.schema.yaml#/ForgotPasswordRequest"
+    responses:
+      "201":
+        description: If email exists, reset link has been sent
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  type: object
+                  properties:
+                    message:
+                    type: string
+                    example: If email exists, reset link has been sent
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error
+
+auth-reset-password:
+  post:
+    summary: Reset password
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./schemas/auth.schema.yaml#/ResetPasswordRequest"
+    responses:
+      "201":
+        description: If email exists, reset link has been sent
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [success]
+                  example: success
+                data:
+                  type: object
+                  properties:
+                    message:
+                    type: string
+                    example: If email exists, reset link has been sent
+      "401":
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Invalid or expired token
+      "500":
+        description: Server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [error]
+                  example: error
+                message:
+                  type: string
+                  example: Internal server error

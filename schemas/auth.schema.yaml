@@ -101,3 +101,25 @@ ErrorResponse:
     error:
       type: string
       example: Unauthorized
+
+ForgotPasswordRequest:
+  type: object
+  required:
+    - email
+  properties:
+    email:
+      type: string
+      format: email
+      example: john@example.com
+
+ResetPasswordRequest:
+  type: object
+  required:
+    - email
+  properties:
+    token:
+      type: string
+      example: reset_token_here
+    newPassword:
+      type: string
+      example: 12345678

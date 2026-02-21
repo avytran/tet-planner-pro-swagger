@@ -16,6 +16,10 @@ paths:
     $ref: "./auth.yaml#/auth-profile"
   /auth/refresh-token:
     $ref: "./auth.yaml#/auth-refresh-token"
+  /auth/forgot-password:
+    $ref: "./auth.yaml#/auth-forgot-password"
+  /auth/reset-password:
+    $ref: "./auth.yaml#/auth-reset-password"
 
 components:
   schemas:
@@ -34,6 +38,10 @@ components:
       $ref: "./schemas/auth.schema.yaml#/UserProfile"
     ErrorResponse:
       $ref: "./schemas/auth.schema.yaml#/ErrorResponse"
+    ForgotPasswordRequest:
+      $ref: "./schemas/auth.schema.yaml#/ForgotPasswordRequest"
+    ResetPasswordRequest:
+      $ref: "./schemas/auth.schema.yaml#/ResetPasswordRequest"
 
   securitySchemes:
     bearerAuth:
